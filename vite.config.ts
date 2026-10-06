@@ -4,8 +4,11 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  // Use /greendocs/ base URL for production GitHub Pages deployment, '/' for local dev
+  const base = process.env.BASE_URL || (process.env.NODE_ENV === 'production' ? '/greendocs/' : '/');
+
   return {
-    base: './',
+    base,
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

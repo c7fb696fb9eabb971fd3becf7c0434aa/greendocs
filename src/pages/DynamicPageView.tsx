@@ -5,6 +5,7 @@ import { BreadcrumbPath } from '../components/BreadcrumbPath';
 import { SwipeableFlipCard } from '../components/SwipeableFlipCard';
 import { PaginatedSubCardList } from '../components/ui/PaginatedSubCardList';
 import { NotFoundView } from '../components/ui/NotFoundView';
+import { HomePage } from './HomePage';
 
 /**
  * Universal dynamic view that resolves and renders any page node in the hierarchy.
@@ -19,8 +20,16 @@ export const DynamicPageView: React.FC = () => {
   const navigate = useNavigate();
   const [deckActiveIndices, setDeckActiveIndices] = useState<Record<string, number>>({});
 
-  // Parse path segments from URL (e.g. /opencv/imageprocessing -> ['opencv', 'imageprocessing'])
-  const pathSegments = location.pathname.split('/').filter(Boolean);
+  // Parse path segments from URL, stripping repository name if present
+  const pathSegments = location.pathname
+    .split('/')
+    .filter((seg) => Boolean(seg && seg.trim()) && seg.toLowerCase() !== 'greendocs');
+
+  // If at repository root, render HomePage directly
+  if (pathSegments.length === 0) {
+    return <HomePage />;
+  }
+
   const resolved = resolvePathNode(pathSegments);
 
   const cardHolders = resolved?.node?.cardHolders || [];

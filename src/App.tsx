@@ -7,12 +7,13 @@ import { DynamicPageView } from './pages/DynamicPageView';
 
 /**
  * Main Application Routing Architecture:
+ * - basename={import.meta.env.BASE_URL} enables seamless deployment to GitHub Pages sub-paths (/greendocs/)
  * - / : Root directory rendering top-level pages as minimalist small sub-cards
- * - /* : Dynamic hierarchical page router supporting arbitrary nesting (/opencv, /opencv/vision, etc.)
+ * - /* : Dynamic hierarchical page router supporting arbitrary nesting (/opencv, /opencv/imageprocessing, etc.)
  */
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <div className="min-h-screen bg-[#070a0e] text-slate-200 antialiased flex flex-col relative overflow-x-hidden selection:bg-emerald-500/30 selection:text-emerald-300">
         {/* Reusable Obsidian Dot Matrix & Ambient Glow Background */}
         <DotMatrixBackground />
