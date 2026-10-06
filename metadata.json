@@ -1,0 +1,8 @@
+{
+  "name": "Docs App",
+  "description": "A developer documentation web application styled in Mintlify\u0027s midnight obsidian and emerald aesthetic, featuring touch-swipeable 3D flippable cards and matched baseline components.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
